@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="faasApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <script src="{{url_for('static', filename='app.js')}}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>FAAS</title>
+</head>
+<body ng-controller="faasCtrl">
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+          <!-- <h2 class="d-inline-block align-top"> -->
+          Bootstrap
+        </a>
+      </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="">
+                    <div class="jumbotron mb-0">
+                        <h1 class="display-3 font-weight-bold">IASS</h1><span class="h5 font-weight-bold">Insults As A Service</span>
+                        <p class="lead "> <br>This gives you a modern, scalable, RESTful solution to the common problem of telling people to get lost.</p>
+                        <hr class="my-3">
+                        <!-- <p>We couldn't wrap our heads around the fact that it's 2020 and we don't have a quick way to satisfy ourselves with quick insults. We decided to do the needful.</p> -->
+                        <blockquote class="blockquote">
+                            <p class="mb-0">This site is unapologetically mean. If you're offended, well, I couldn't care less.</p>
+                            <footer class="blockquote-footer"><cite title="Source Title">The one who built this </cite></footer>
+                        </blockquote>
+                        <p class="lead">
+                          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                        </p>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light pt-3 px-3">
+            <div class="col-xs-12">
+                <div class="">
+                    <div><div class="h3">Okay, here's the drill!</div>
+                    <ol class="lead">
+                        <li>Select a keyword/phrase.</li>
+                        <li>Enter what's asked.</li>
+                        <li>Get what's given to you.</li>
+                    </ol></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row bg-light py-3 px-2">
+            <div class="col-xs-12 w-100">
+                <a class="btn btn-primary w-100" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Link with href
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        
+                        <div class="list-group" style="max-height: 30vh; overflow-y: scroll;">
+                            <a ng-repeat="x in keywords" href="#" class="list-group-item list-group-item-action">
+                                {:x:}
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
