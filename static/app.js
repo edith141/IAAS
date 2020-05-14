@@ -5,7 +5,7 @@ faasApp.config(['$interpolateProvider', function($interpolateProvider) {
     $interpolateProvider.startSymbol('{:');
     $interpolateProvider.endSymbol(':}');
   }]);
-faasApp.controller('faasCtrl', ['$scope', function($scope) {
+faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
     // $scope.ele = ['1','3'];
     // console.log($scope.ele);
     $scope.keywords = [
@@ -64,4 +64,26 @@ faasApp.controller('faasCtrl', ['$scope', function($scope) {
         '/thumbs'
       ]
       console.log($scope.keywords)
+      $scope.selectedKewword = '/Zero/NAME'
+      $scope.setKeyword = function(kw) {
+        $scope.selectedKewword = kw;
+        console.log($scope.selectedKewword);
+        let url = 'https://cors-anywhere.herokuapp.com/https://roastaas.herokuapp.com' + $scope.selectedKewword.replace('NAME','Ramu');
+        $scope.getInsult(url);
+      }
+
+      $scope.getInsult = function(iurl) {
+        $http({
+            method: 'GET',
+            url: iurl
+          }).then(function successCallback(response) {
+              console.log(response);
+              // this callback will be called asynchronously
+              // when the response is available
+            }, function errorCallback(response) {
+                console.log('err', response);
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+            });
+      }
 }]);
