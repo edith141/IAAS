@@ -65,14 +65,31 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
       ]
       console.log($scope.keywords)
       $scope.selectedKewword = '/Zero/NAME'
+      $scope.kwBtnText = 'Select Keyword'
+      $scope.argPlaceholder = [];
+      $scope.argList = [];
       $scope.setKeyword = function(kw) {
+        $scope.argList = [];
         $scope.selectedKewword = kw;
+        $scope.kwBtnText = kw;
+        $scope.argPlaceholder = $scope.selectedKewword.split('/').slice(2)
         console.log($scope.selectedKewword);
-        let url = 'https://cors-anywhere.herokuapp.com/https://roastaas.herokuapp.com' + $scope.selectedKewword.replace('NAME','Ramu');
-        $scope.getInsult(url);
+        $scope.argList[0] = $scope.selectedKewword.split('/')[1]
+        // if item.split('/').slice(2)
+        // $scope.getInsult(url);
+      }
+      $scope.setArgs = function() {
+          let urlEndpoint = $scope.argList.join('/');
+          console.log($scope.argList)
+          console.log(urlEndpoint);
+          let finalUrl = 'https://cors-anywhere.herokuapp.com/https://roastaas.herokuapp.com/' + urlEndpoint;
+          console.log(finalUrl);
+          $scope.getInsult(finalUrl)
       }
 
       $scope.getInsult = function(iurl) {
+        // let url = 'https://cors-anywhere.herokuapp.com/https://roastaas.herokuapp.com' + $scope.selectedKewword.replace('NAME','Ramu');
+
         $http({
             method: 'GET',
             url: iurl
