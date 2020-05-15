@@ -1,6 +1,6 @@
 let faasApp = angular.module('faasApp', []);
-// let insultList = [];
-let oneInsult = '';
+let insultList = [];
+// let oneInsult = '';
 
 class TextScramble {
     constructor(el) {
@@ -58,7 +58,7 @@ class TextScramble {
   
 
 
-console.log('yoda')
+// console.log('yoda')
 faasApp.config(['$interpolateProvider', function($interpolateProvider) {
     $interpolateProvider.startSymbol('{:');
     $interpolateProvider.endSymbol(':}');
@@ -120,7 +120,7 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
         '/rat',
         '/thumbs'
       ]
-      console.log($scope.keywords)
+      // console.log($scope.keywords)
       $scope.selectedKewword = '/Zero/NAME'
       $scope.kwBtnText = 'Select Keyword'
       $scope.insult="";
@@ -132,18 +132,18 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
         $scope.selectedKewword = kw;
         $scope.kwBtnText = kw;
         $scope.argPlaceholder = $scope.selectedKewword.split('/').slice(2)
-        console.log($scope.selectedKewword);
+        // console.log($scope.selectedKewword);
         $scope.argList[0] = $scope.selectedKewword.split('/')[1]
         // if item.split('/').slice(2)
         // $scope.getInsult(url);
       }
       $scope.setArgs = function() {
           let urlEndpoint = $scope.argList.join('/');
-          console.log($scope.argList)
-          console.log(urlEndpoint);
+          // console.log($scope.argList)
+          // console.log(urlEndpoint);
           let finalUrl = 'https://cors-anywhere.herokuapp.com/https://roastaas.herokuapp.com/' + urlEndpoint;
         //   let finalUrl = 'https://roastaas.herokuapp.com/' + urlEndpoint;
-          console.log(finalUrl);
+          // console.log(finalUrl);
           $scope.getInsult(finalUrl)
       }
 
@@ -154,13 +154,18 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
             method: 'GET',
             url: iurl
           }).then(function successCallback(response) {
-              console.log(response);
+              // console.log(response);
               $scope.insult = response.data.insult
-              oneInsult = response.data.insult
-              console.log(response.data.insult);
-            //   insultList.push(response.data.insult);
+              
+              // oneInsult = response.data.insult
+              // console.log(response.data.insult);
+              window.insultList = []
+              window.insultList.push(response.data.insult);
             //   console.log("from sc", insultList);
             $('.insultRow').removeClass('d-none')
+            $('html, body').animate({
+              scrollTop: $(".insultCnt").offset().top
+          }, 1000);
             
             
               window.scatterText();
@@ -168,6 +173,13 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
               // when the response is available
             }, function errorCallback(response) {
                 console.log('err', response);
+                $scope.insult = 'YAY! Too much load!!!'
+              $('html, body').animate({
+                scrollTop: $(".insultCnt").offset().top
+            }, 1000);
+              // oneInsult = response.data.insult
+              // console.log(response.data.insult);
+              insultList.push('YAY! Too much load!!!');
               // called asynchronously if an error occurs
               // or server returns response with an error status.
             });
@@ -175,32 +187,30 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
 }]);
 
 $( document ).ready(function() {
-    console.log( "ready!" );
+    // console.log( "ready!" );
 
     // ——————————————————————————————————————————————————
 // TextScramble
 // ——————————————————————————————————————————————————
 
-
+  const el = document.querySelector('.itext');
+  const fx = new TextScramble(el);
   // ——————————————————————————————————————————————————
   // Example
   // ——————————————————————————————————————————————————
   window.scatterText = function() {
-  const phrases = [oneInsult];
-  $('html, body').animate({
-    scrollTop: $(".insultCnt").offset().top
-}, 1000);
+  // const phrases = [oneInsult];
   
-  console.log(phrases)
-  const el = document.querySelector('.itext');
-  const fx = new TextScramble(el);
+  // console.log(window.insultList)
+  // const el = document.querySelector('.itext');
+  // const fx = new TextScramble(el);
   
   let counter = 0;
   const next = () => {
-    fx.setText(phrases[counter]).then(() => {
-      setTimeout(next, 2000);
+    fx.setText(window.insultList[counter]).then(() => {
+      setTimeout(next, 5000);
     });
-    counter = (counter + 1) % phrases.length;
+    counter = (counter + 1) % window.insultList.length;
   };
   
   next();
