@@ -140,8 +140,8 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
           let urlEndpoint = $scope.argList.join('/');
           console.log($scope.argList)
           console.log(urlEndpoint);
-        //   let finalUrl = 'https://cors-anywhere.herokuapp.com/https://roastaas.herokuapp.com/' + urlEndpoint;
-          let finalUrl = 'https://roastaas.herokuapp.com/' + urlEndpoint;
+          let finalUrl = 'https://cors-anywhere.herokuapp.com/https://roastaas.herokuapp.com/' + urlEndpoint;
+        //   let finalUrl = 'https://roastaas.herokuapp.com/' + urlEndpoint;
           console.log(finalUrl);
           $scope.getInsult(finalUrl)
       }
