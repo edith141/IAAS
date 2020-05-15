@@ -126,6 +126,7 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
       $scope.insult="";
       $scope.argPlaceholder = [];
       $scope.argList = [];
+
       $scope.setKeyword = function(kw) {
         $scope.argList = [];
         $scope.selectedKewword = kw;
@@ -185,12 +186,12 @@ $( document ).ready(function() {
   // Example
   // ——————————————————————————————————————————————————
   window.scatterText = function() {
-  const phrases = [oneInsult, oneInsult];
+  const phrases = [oneInsult];
   $('html, body').animate({
     scrollTop: $(".insultCnt").offset().top
-}, 2000);
+}, 1000);
   
-  
+  console.log(phrases)
   const el = document.querySelector('.itext');
   const fx = new TextScramble(el);
   
