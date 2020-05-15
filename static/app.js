@@ -212,7 +212,7 @@ $( document ).ready(function() {
   let counter = 0;
   const next = () => {
     fx.setText(window.insultList[counter]).then(() => {
-      setTimeout(next, 5000);
+      setTimeout(next, 4000);
     });
     counter = (counter + 1) % window.insultList.length;
   };
