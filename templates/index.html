@@ -82,8 +82,8 @@
                     <input ng-repeat="i in argPlaceholder" ng-model="argList[$index + 1]" type="text" class="form-control" placeholder="{:i:}" aria-label="{:i:}">
                 </div>
                 <div class="col-xs-12 w-100">
-                    <a ng-click="setArgs()" class="text-white btn btn-success w-100" role="button" >
-                        I'm Ready
+                    <a ng-click="setArgs()" ng-bind="InBtnText" class="text-white btn btn-success w-100" role="button" >
+                        
                     </a>
                 </div>
             </div>

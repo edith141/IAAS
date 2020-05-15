@@ -123,6 +123,7 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
       // console.log($scope.keywords)
       $scope.selectedKewword = '/Zero/NAME'
       $scope.kwBtnText = 'Select Keyword'
+      $scope.InBtnText = 'GO!'
       $scope.insult="";
       $scope.argPlaceholder = [];
       $scope.argList = [];
@@ -139,6 +140,7 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
       }
       $scope.setArgs = function() {
           let urlEndpoint = $scope.argList.join('/');
+          $scope.InBtnText = 'Loading...'
           // console.log($scope.argList)
           // console.log(urlEndpoint);
           let finalUrl = 'https://cors-anywhere.herokuapp.com/https://roastaas.herokuapp.com/' + urlEndpoint;
@@ -159,6 +161,7 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
               
               // oneInsult = response.data.insult
               // console.log(response.data.insult);
+              $scope.InBtnText = 'Go!'
               window.insultList = []
               window.insultList.push(response.data.insult);
             //   console.log("from sc", insultList);
@@ -173,6 +176,7 @@ faasApp.controller('faasCtrl', ['$scope', '$http', function($scope, $http) {
               // when the response is available
             }, function errorCallback(response) {
                 console.log('err', response);
+                $scope.InBtnText = 'Error; Too many users!'
                 $scope.insult = 'YAY! Too much load!!!'
               $('html, body').animate({
                 scrollTop: $(".insultCnt").offset().top
